@@ -17,13 +17,12 @@ def multiplyComplex(x, y):
     return (a*c-b*d, a*d+b*c )  # valor real e imaginario da multiplicação pela formula da multiplicação de numeros complexos
 
 def printComplex(x, prefix=''):  #prefixo vazio por defeito, mas pode ser editado
-        # add code here ...
+        
     r = x[0] #parte real é a primeira posição (0) do numero x
     i = x[1] #parte imag é a segunda posição (1) do numero x
     print(prefix + str(r) + '+' + str(i) + 'i')
 
 def main():
-    # ex2 a)
 
     # define two complex numbers as tuples of size two
     c1 = (5, 3)

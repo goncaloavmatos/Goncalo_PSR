@@ -1,2 +1,2 @@
 # Goncalo_PSR
-Personal repository where I'll save my files for my PSR classes
+Personal repository where I'll save the files for my PSR classes

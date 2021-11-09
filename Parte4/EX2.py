@@ -4,9 +4,8 @@ import cv2
 
 def main():
 
-    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte5/images/atlas2000_e_atlasmv.png'
+    image_filename = '/home/goncalo/Pictures/imtest.jpg'
     image = cv2.imread(image_filename, cv2.IMREAD_COLOR) # Load an image
-
 
     cv2.imshow('window', image)  # Display the image
     cv2.waitKey(0) # wait for a key press before proceeding

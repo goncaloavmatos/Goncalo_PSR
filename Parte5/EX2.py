@@ -4,12 +4,21 @@ import cv2
 
 def main():
 
-    image_filename = '/home/goncalo/Pictures/imtest.jpg'
-    image = cv2.imread(image_filename, cv2.IMREAD_COLOR) # Load an image
+    #Load image
+    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte5/images/atlascar2.png'
+    image_original = cv2.imread(image_filename, cv2.IMREAD_COLOR) # Load an image
+    image_gray=cv2.cvtColor(image_original,cv2.COLOR_BGR2GRAY)
 
-    cv2.imshow('window', image)  # Display the image
-    cv2.waitKey(0) # wait for a key press before proceeding
+    #Process image
+    retval, image_thresholded = cv2.threshold(image_gray, 128, 255, cv2.THRESH_BINARY)
 
+
+    #Visualization
+    cv2.imshow('original', image_original)  # Display the image
+    cv2.imshow('gray', image_gray)  # Display the image
+    cv2.imshow('processed', image_thresholded) # Display the image
+
+    cv2.waitKey(0)
 
 if __name__ == '__main__':
     main()

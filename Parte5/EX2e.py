@@ -8,9 +8,9 @@ def mouse_callback(event, x, y, flags, param):
     global image_original
 
     pix=image_original[y,x]
-    B = pix[0]
-    G = pix[1]
-    R = pix[2]
+    H = pix[0]
+    S = pix[1]
+    V = pix[2]
 
     print('R = ' + str(R) + ';  G = ' + str(G) + ';  B = ' + str(B))
 
@@ -19,17 +19,18 @@ def main():
     #Load image
     image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte5/images/atlas2000_e_atlasmv.png'
     image_original = cv2.imread(image_filename, cv2.IMREAD_COLOR) # Load an image
+    image_hsv = cv2.cvtColor(image_original, cv2.COLOR_BGR2HSV)  # Load an image
 
-    image_b, image_g, image_r = cv2.split(image_original)
+    image_h, image_s, image_v = cv2.split(image_hsv)
 
-    ranges = {'b': {'min':0, 'max':50},
-              'g': {'min':80, 'max':256},
-              'r': {'min':0, 'max':50}}
+    ranges = {'h': {'min':40, 'max':180},
+              's': {'min':180, 'max':256},
+              'v': {'min':60, 'max':180}}
 
     #Process image
-    mins = np.array([ranges['b']['min'], ranges['g']['min'] , ranges['r']['min'] ])
-    maxs =  np.array([ranges['b']['max'], ranges['g']['max'] , ranges['r']['max'] ])
-    Mask = cv2.inRange(image_original, mins, maxs)
+    mins = np.array([ranges['h']['min'], ranges['s']['min'] , ranges['v']['min'] ])
+    maxs =  np.array([ranges['h']['max'], ranges['s']['max'] , ranges['v']['max'] ])
+    Mask = cv2.inRange(image_hsv, mins, maxs)
 
 
     #Visualization

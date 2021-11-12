@@ -35,7 +35,7 @@ def main():
     image_original[Mask]=[0,0,255]
 
     #Visualization
-    cv2.namedWindow('original',cv2.WINDOW_NORMAL)
+    cv2.namedWindow('original', cv2.WINDOW_NORMAL)
     cv2.setMouseCallback("original", mouse_callback)
 
     cv2.imshow('original', image_original)  # Display the image

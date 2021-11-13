@@ -9,11 +9,11 @@ import json
 # ............... Global Variables ................................
 
 minBH = 0
-maxBH = 0
+maxBH = 255
 minGS = 0
-maxGS = 0
+maxGS = 255
 minRV = 0
-maxRV = 0
+maxRV = 255
 
 
 # .................. Trackbar callback functions ....................
@@ -74,17 +74,27 @@ def main():
 
     # ................Create Trackbars...............................................
 
-    cv2.createTrackbar('Min BH', window_name, 0, 255, onTrackbarMinBH)
-    cv2.createTrackbar('Max BH', window_name, 255, 255, onTrackbarMaxBH)
-    cv2.createTrackbar('Min GS', window_name, 0, 255, onTrackbarMinGS)
-    cv2.createTrackbar('Max GS', window_name, 255, 255, onTrackbarMaxGS)
-    cv2.createTrackbar('Min RV', window_name, 0, 255, onTrackbarMinRV)
-    cv2.createTrackbar('Max RV', window_name, 255, 255, onTrackbarMaxRV)
+    if args['hsv']:
 
-    previous_ranges = {}
+        cv2.createTrackbar('Min H', window_name, 0, 255, onTrackbarMinBH)
+        cv2.createTrackbar('Max H', window_name, 255, 255, onTrackbarMaxBH)
+        cv2.createTrackbar('Min S', window_name, 0, 255, onTrackbarMinGS)
+        cv2.createTrackbar('Max S', window_name, 255, 255, onTrackbarMaxGS)
+        cv2.createTrackbar('Min V', window_name, 0, 255, onTrackbarMinRV)
+        cv2.createTrackbar('Max V', window_name, 255, 255, onTrackbarMaxRV)
+
+    else:
+
+        cv2.createTrackbar('Min B', window_name, 0, 255, onTrackbarMinBH)
+        cv2.createTrackbar('Max B', window_name, 255, 255, onTrackbarMaxBH)
+        cv2.createTrackbar('Min G', window_name, 0, 255, onTrackbarMinGS)
+        cv2.createTrackbar('Max G', window_name, 255, 255, onTrackbarMaxGS)
+        cv2.createTrackbar('Min R', window_name, 0, 255, onTrackbarMinRV)
+        cv2.createTrackbar('Max R', window_name, 255, 255, onTrackbarMaxRV)
 
     # .............Assigning limits selected with the trackbars.......................
 
+    #previous_ranges = {}
     while True:
 
         if not args['hsv']:
@@ -111,9 +121,9 @@ def main():
 
         # ............. printing limits ...............
 
-        if previous_ranges != ranges:
-            pprint(ranges)
-            previous_ranges = ranges
+        # if previous_ranges != ranges:
+        #     pprint(ranges)
+        #     previous_ranges = ranges
 
         cv2.setMouseCallback(window_name, onMouse)
 

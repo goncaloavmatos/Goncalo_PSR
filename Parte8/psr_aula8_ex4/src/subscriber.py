@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import rospy
 import argparse
+from psr_aula8_ex4.msg import Dog
 from std_msgs.msg import String
 
 
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + " I heard: %s ", data.data)
+def callback(msg):
+    rospy.loginfo(" I heard: %s ", msg.brothers)
 
 
 def main():
@@ -29,7 +30,7 @@ def main():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber(args['topic'], String, callback)
+    rospy.Subscriber(args['topic'], Dog, callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

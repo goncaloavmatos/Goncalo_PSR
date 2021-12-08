@@ -3,9 +3,8 @@
 
 import rospy
 from std_msgs.msg import String
-from psr_aula8_ex4.msg import Dog
-
-import argparse
+from psr_parte9_ex_tp.msg import Dog
+import colorama
 
 def talker():
 
@@ -13,29 +12,30 @@ def talker():
     # Initialization
     # .............................................................
 
-    parser = argparse.ArgumentParser(description='Part8 example')
-    parser.add_argument('--rate', type=float, default='1 ', help='message rate')
-    parser.add_argument('--topic', type=str, default='chatter ', help='topic to listen')
-    parser.add_argument('--message', type=str, default='Do not know what to say ', help='message to print')
+    rospy.init_node('publisher', anonymous=True)
+    pub = rospy.Publisher('chatter', Dog, queue_size=10)
 
-    args = vars(parser.parse_args())
+    # read a private parameter
+    frequency = rospy.get_param("~frequency", default=1)  # til torna parametro privado
 
-    pub = rospy.Publisher(args['topic'], Dog, queue_size=10)
-    rospy.init_node('talker', anonymous=True)
-    rate = rospy.Rate(args['rate'])  # 10hz
+    rate = rospy.Rate(frequency)  # hz
 
     # .............................................................
     # Execution
     # .............................................................
 
     while not rospy.is_shutdown():
+        #read global parameter
+        highlight_text_color = rospy.get_param("/highlight_text_color")
+
         dog = Dog()
         dog.name = 'Lubi'
         dog.age = 6
         dog.color = 'brown'
         dog.brothers.append('ragnar')
+        dog.brothers.append('Lau')
 
-        rospy.loginfo('Sending dog...')
+        rospy.loginfo('Sending dog... Name: ' + getattr(colorama.Fore, highlight_text_color) + str(dog.name) + colorama.Style.RESET_ALL)  # mesmo que um print em ROS
         pub.publish(dog)
         rate.sleep()
 

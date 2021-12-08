@@ -1,0 +1,49 @@
+<launch>
+
+    <param name="/highlight_text_color" value="RED" />
+
+    <!-- Publicador A -->
+    <node name="publisherA" pkg="psr_parte9_ex_tp" type="publisher.py" output="screen">
+
+            <remap from="chatter" to="dog1"/>
+            <param name="frequency" value="1" />
+
+    </node>
+
+    <!-- Publicador B -->
+    <node name="publisherB" pkg="psr_parte9_ex_tp" type="publisher.py" output="screen">
+
+            <remap from="chatter" to="dog1"/>
+            <param name="frequency" value="3" />
+
+    </node>
+
+    <!-- Publicador C -->
+        <node name="publisherC" pkg="psr_parte9_ex_tp" type="publisher.py" output="screen">
+
+                <remap from="chatter" to="dog2"/>
+                <param name="frequency" value="10" />
+
+        </node>
+
+    <!-- Subscritor AB1 -->
+        <node name="subscriberAB1" pkg="psr_parte9_ex_tp" type="subscriber.py" output="screen">
+
+                <remap from="chatter" to="dog1"/>
+
+        </node>
+
+    <!-- Subscritor AB2 -->
+        <node name="subscriberAB2" pkg="psr_parte9_ex_tp" type="subscriber.py" output="screen">
+
+                <remap from="chatter" to="dog1"/>
+
+        </node>
+
+    <!-- Subscritor C -->
+        <node name="subscriberC" pkg="psr_parte9_ex_tp" type="subscriber.py" output="screen">
+
+                <remap from="chatter" to="dog2"/>
+
+        </node>
+</launch>

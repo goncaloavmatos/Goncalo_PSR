@@ -19,12 +19,13 @@ def callback(msg):
 
     points = []
 
+    #Transformar pontos em coord polares em pontos em coord cartesianas
     z = 0
     for idx, range in enumerate(msg.ranges):
         theta = msg.angle_min + msg.angle_increment * idx
         x = range * math.cos(theta)
         y = range * math.sin(theta)
-        points.append([x, y, z])
+        points.append([x, y, z])  # add poin to the pointcloud
 
     pc2 = point_cloud2.create_cloud(header, fields, points)
     publisher.publish(pc2)

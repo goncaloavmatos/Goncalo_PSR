@@ -17,7 +17,7 @@ def mouse_callback(event, x, y, flags, param):
 def main():
     global image_original
     #Load image
-    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte5/images/atlas2000_e_atlasmv.png'
+    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte05/images/atlas2000_e_atlasmv.png'
     image_original = cv2.imread(image_filename, cv2.IMREAD_COLOR) # Load an image
 
     image_b, image_g, image_r = cv2.split(image_original)

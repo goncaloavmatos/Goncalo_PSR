@@ -5,7 +5,7 @@ import cv2
 
 def main():
 
-    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte5/images/atlas2000_e_atlasmv.png'
+    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte05/images/atlas2000_e_atlasmv.png'
     image = cv2.imread(image_filename, cv2.IMREAD_COLOR)  # Load an image
 
     height, width, _ = image.shape

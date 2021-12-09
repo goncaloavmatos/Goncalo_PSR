@@ -5,7 +5,7 @@ import cv2
 def main():
 
     #Load image
-    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte5/images/atlascar2.png'
+    image_filename = '/home/goncalo/Desktop/Goncalo_PSR/Parte05/images/atlascar2.png'
     image_original = cv2.imread(image_filename, cv2.IMREAD_COLOR) # Load an image
 
     image_b, image_g, image_r = cv2.split(image_original)

@@ -12,6 +12,7 @@ def main():
     pub = rospy.Publisher('markers', Marker, queue_size=10)
 
     rate = rospy.Rate(10) # 10hz
+
     # count = 0
     # increment = 0.1
 
@@ -50,7 +51,7 @@ def main():
         marker.id = 0
 
         # -------------------------------------------------------------------------------------------------------------
-        # Create another marker
+        # Create another marker - Example:  randomly located spheres
         # -------------------------------------------------------------------------------------------------------------
         # marker2 = Marker()  # useful: http://docs.ros.org/en/noetic/api/visualization_msgs/html/msg/marker.html
         #
@@ -67,7 +68,7 @@ def main():
         # scale = Vector3(x=1, y=1, z=1)
         #
         # # marker2 has a color parameter that needs to be created (File type: std_msgs/ColorRGBA.msg)
-        # color = ColorRGBA(r=1, g=0, b=0, a=1)  # a is alfa, and represents the transparency. 0=transparent and 1=opaque
+        # color = ColorRGBA(r=1, g=0, b=0, a=1)  # a is alfa, and represents the transparency. 0=transparent; 1=opaque
         #
         # # marker2 has a points parameter that needs to be created
         # marker2.points = []
@@ -97,7 +98,8 @@ def main():
         scalesphere = Vector3(x=2, y=2, z=2)
 
         # markersphere has a color parameter that needs to be created (File type: std_msgs/ColorRGBA.msg)
-        colorsphere = ColorRGBA(r=0, g=1, b=0, a=0.3)  # a is alfa, and represents the transparency. 0=transparent and 1=opaque
+        colorsphere = ColorRGBA(r=0, g=1, b=0, a=0.3)
+        # a is alfa, and represents the transparency. 0=transparent and 1=opaque
 
         # markersphere parameters
         markersphere.header = header
@@ -114,10 +116,6 @@ def main():
 
         markertext = Marker()  # useful: http://docs.ros.org/en/noetic/api/visualization_msgs/html/msg/marker.html
 
-        # markertext has a color parameter that needs to be created (File type: std_msgs/ColorRGBA.msg)
-        color_t = ColorRGBA(r=1, g=0, b=0,
-                                a=1)  # a is alfa, and represents the transparency. 0=transparent and 1=opaque
-
         # Marker has a Pose parameter that needs to be created (File type: geometry_msgs/Pose.msg)
         # Pose has a Position parameter(Point) and an Orientation parameter(Quaternion)
         point_t = Point(x=2, y=2, z=0)
@@ -130,14 +128,17 @@ def main():
         markertext.text = 'Radius = ' + str(scalesphere.x)
         markertext.pose = pose_t
         markertext.scale = scale
-        markertext.color = color_t
+        markertext.color = color
         markertext.ns = 'markertext'
         markertext.id = 2
 
+        # -------------------------------------------------------------------------------------------------------------
         # Finally, publish created markers
+        # -------------------------------------------------------------------------------------------------------------
         pub.publish(marker)
         pub.publish(markersphere)
         pub.publish(markertext)
+
         rospy.loginfo('Publishing Marco')
         rate.sleep()
 

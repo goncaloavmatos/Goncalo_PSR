@@ -42,7 +42,7 @@ def callback(msg):
     rospy.loginfo("LaserScan received...")
 
     x_prev, y_prev = 1000, 1000
-    dist_threshold = 0.3
+    dist_threshold = 0.5
 
     marker_array = MarkerArray()
 
@@ -50,11 +50,15 @@ def callback(msg):
     z = 0
 
     for idx, range in enumerate(msg.ranges):
+
+        if range < 0.1:  # para resolver problema na primeira iteração
+            continue
+
         theta = msg.angle_min + msg.angle_increment * idx
         x = range * math.cos(theta)
         y = range * math.sin(theta)
 
-        #should I create a new cluster?
+        # should I create a new cluster?
 
         dist = math.sqrt((x_prev - x)**2 + (y_prev-y)**2)
         if dist > dist_threshold:  # new cluster

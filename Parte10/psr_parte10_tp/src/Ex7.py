@@ -9,7 +9,7 @@ from geometry_msgs.msg import Pose, Point, Quaternion, Vector3
 
 def main():
     rospy.init_node('talker', anonymous=True)
-    pub = rospy.Publisher('markers', Marker, queue_size=10)
+    pub = rospy.Publisher('markers', MarkerArray, queue_size=10)
 
     rate = rospy.Rate(10) # 10hz
 
@@ -18,6 +18,8 @@ def main():
 
     while not rospy.is_shutdown():
         #count += increment
+
+        marker_array = MarkerArray()
 
         # -------------------------------------------------------------------------------------------------------------
         # Create marker - RED OPAQUE CUBE
@@ -49,6 +51,8 @@ def main():
         marker.color = color
         marker.ns = 'marker'
         marker.id = 0
+
+        marker_array.markers.append(marker) # Add marker to marker array
 
         # -------------------------------------------------------------------------------------------------------------
         # Create another marker - Example:  randomly located spheres
@@ -110,6 +114,8 @@ def main():
         markersphere.ns = 'markersphere'
         markersphere.id = 1
 
+        marker_array.markers.append(markersphere)  # Add marker to marker array
+
         # -------------------------------------------------------------------------------------------------------------
         # Create another marker - TEXT
         # -------------------------------------------------------------------------------------------------------------
@@ -132,12 +138,16 @@ def main():
         markertext.ns = 'markertext'
         markertext.id = 2
 
+        marker_array.markers.append(markertext)  # Add marker to marker array
+
         # -------------------------------------------------------------------------------------------------------------
         # Finally, publish created markers
         # -------------------------------------------------------------------------------------------------------------
-        pub.publish(marker)
-        pub.publish(markersphere)
-        pub.publish(markertext)
+        # pub.publish(marker)
+        # pub.publish(markersphere)
+        # pub.publish(markertext)
+
+        pub.publish(marker_array)
 
         rospy.loginfo('Publishing Marco')
         rate.sleep()

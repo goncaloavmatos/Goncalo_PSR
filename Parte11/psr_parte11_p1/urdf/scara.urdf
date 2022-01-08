@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot name="myscara">
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.2"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="3.0 0.6 0.6"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Definir junta-->
+
+  <joint name="base_link_to_link1" type="revolute">
+    <axis xyz="0 0 1"/>
+<!--    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>-->
+    <origin rpy="0 0 0" xyz="0 0 1.2"/>
+    <parent link="base_link"/>
+    <child link="link1"/>
+  </joint>
+
+</robot>

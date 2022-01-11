@@ -1,14 +1,18 @@
 <?xml version="1.0"?>
 <robot name="myscara">
 
+  <!-- Definir link-->
+
   <link name="base_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.3"/>
       <geometry>
-        <cylinder length="0.6" radius="0.2"/>
+        <cylinder length="0.6" radius="0.3"/>
       </geometry>
     </visual>
   </link>
+
+  <!-- Definir link-->
 
   <link name="link1">
     <visual>
@@ -27,6 +31,25 @@
     <origin rpy="0 0 0" xyz="0 0 1.2"/>
     <parent link="base_link"/>
     <child link="link1"/>
+  </joint>
+
+  <!-- Definir link-->
+
+  <link name="link1b">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.6" radius="0.3"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Definir junta-->
+
+  <joint name="link1_to_link1b" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 -0.3"/>  <!-- desce 0.3 em relação à origem do link1-->
+    <parent link="link1"/>
+    <child link="link1b"/>
   </joint>
 
 </robot>

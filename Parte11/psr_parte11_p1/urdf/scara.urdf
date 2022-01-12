@@ -1,7 +1,26 @@
 <?xml version="1.0"?>
 <robot name="myscara">
 
-  <!-- Definir link-->
+  <!-- Colors-->
+
+  <material name="green">
+    <color rgba="0 1 0 0.7"/>
+  </material>
+
+
+  <material name="blue">
+    <color rgba="0 0.8 0.8 0.7"/>
+  </material>
+
+  <material name="magenta">
+    <color rgba="0.8 0 0.8 0.7"/>
+  </material>
+
+  <material name="yellow">
+    <color rgba="0.8 0.8 0 0.7"/>
+  </material>
+
+  <!-- Definir base_link-->
 
   <link name="base_link">
     <visual>
@@ -9,10 +28,11 @@
       <geometry>
         <cylinder length="0.6" radius="0.3"/>
       </geometry>
+      <material name="yellow"/>
     </visual>
   </link>
 
-  <!-- Definir link-->
+  <!-- Definir link1-->
 
   <link name="link1">
     <visual>
@@ -20,6 +40,7 @@
       <geometry>
         <box size="3.0 0.6 0.6"/>
       </geometry>
+      <material name="blue"/>
     </visual>
   </link>
 
@@ -33,7 +54,7 @@
     <child link="link1"/>
   </joint>
 
-  <!-- Definir link-->
+  <!-- Definir link1b-->
 
   <link name="link1b">
     <visual>
@@ -41,6 +62,7 @@
       <geometry>
         <cylinder length="0.6" radius="0.3"/>
       </geometry>
+      <material name="blue"/>
     </visual>
   </link>
 
@@ -50,6 +72,90 @@
     <origin rpy="0 0 0" xyz="0 0 -0.3"/>  <!-- desce 0.3 em relação à origem do link1-->
     <parent link="link1"/>
     <child link="link1b"/>
+  </joint>
+
+  <!-- Definir link2b-->
+
+  <link name="link2b">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.6" radius="0.3"/>
+      </geometry>
+      <material name="magenta"/>
+    </visual>
+  </link>
+
+  <!-- Definir junta-->
+
+  <joint name="link1_to_link2b" type="fixed">
+    <origin rpy="0 0 0" xyz="3 0 -0.3"/>
+    <parent link="link1"/>
+    <child link="link2b"/>
+  </joint>
+
+  <!-- Definir link2-->
+
+  <link name="link2">
+    <visual>
+      <origin rpy="0 0 0" xyz="1.5 0 -0.3"/>
+      <geometry>
+        <box size="3.0 0.6 0.6"/>
+      </geometry>
+      <material name="magenta"/>
+    </visual>
+  </link>
+
+  <!-- Definir junta-->
+
+  <joint name="link1_to_link2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="0.0" upper="6.28" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="3 0 0"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+  </joint>
+
+   <!-- Definir link2c-->
+
+  <link name="link2c">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.6" radius="0.3"/>
+      </geometry>
+      <material name="magenta"/>
+    </visual>
+  </link>
+
+  <!-- Definir junta-->
+
+  <joint name="link2_to_link2c" type="fixed">
+    <origin rpy="0 0 0" xyz="3 0 -0.3"/>
+    <parent link="link2"/>
+    <child link="link2c"/>
+  </joint>
+
+  <!-- Definir link3-->
+
+  <link name="link3">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="2" radius="0.15"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+
+  <!-- Definir junta-->
+
+  <joint name="link2c_to_link3" type="prismatic">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.5" upper="0" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="link2c"/>
+    <child link="link3"/>
   </joint>
 
 </robot>

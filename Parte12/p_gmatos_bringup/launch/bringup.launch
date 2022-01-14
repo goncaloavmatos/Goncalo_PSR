@@ -6,7 +6,7 @@
     <arg name="z_pos" default="0.0"/>
 
     <!--Bloco 3: Carregamento do xacro do robot para o parâmetro robot_description.-->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find p_gmatos_description)/urdf/p_gmatos.urdf.xacro" />
 
      <!--Include do spawn.launch-->
     <include file="$(find p_gmatos_bringup)/launch/spawn.launch">

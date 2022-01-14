@@ -4,12 +4,19 @@
     <arg name="x_pos" default="-3.0"/>
     <arg name="y_pos" default="1.0"/>
     <arg name="z_pos" default="0.0"/>
+    <arg name="player_name" default="p_gmatos"/>
 
-    <!--Bloco 3: Carregamento do xacro do robot para o parâmetro robot_description.-->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find p_gmatos_description)/urdf/p_gmatos.urdf.xacro" />
+    <group ns="$(arg player_name)">
+        <param name="tf_prefix" value="$(arg player_name)"> </param>
+
+        <!--Bloco 3: Carregamento do xacro do robot para o parâmetro robot_description.-->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder $(find p_gmatos_description)/urdf/p_gmatos.urdf.xacro" />
+        <node name ="robot_state_publisher" pkg ="robot_state_publisher" type="robot_state_publisher"> </node>
+    </group>
 
      <!--Include do spawn.launch-->
     <include file="$(find p_gmatos_bringup)/launch/spawn.launch">
+        <arg name="player_name" value="$(arg player_name)"/>
         <arg name="x_pos" value="$(arg x_pos)"/>
         <arg name="y_pos" value="$(arg y_pos)"/>
         <arg name="z_pos" value="$(arg z_pos)"/>

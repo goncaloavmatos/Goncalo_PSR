@@ -26,8 +26,13 @@
     <include file="$(find p_gmatos_bringup)/launch/visualize.launch">
     </include>
 
-    <!--Include teleop.launch-->
-    <include file="$(find turtlebot3_teleop)/launch/turtlebot3_teleop_key.launch">
-    </include>
+    <!--For teleop -->
+    <group ns="$(arg player_name)">
+
+        <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="teleop_rqt" output="screen">
+            <!--Change topic name -->
+            <param name="~default_topic" value="/$(arg player_name)/cmd_vel"></param>
+        </node>
+    </group>
 
 </launch>

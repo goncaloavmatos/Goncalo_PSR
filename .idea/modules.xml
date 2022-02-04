@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../G2_PSR_Trabalho1/.idea/G2_PSR_Trabalho1.iml" filepath="$PROJECT_DIR$/../G2_PSR_Trabalho1/.idea/G2_PSR_Trabalho1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Goncalo_PSR.iml" filepath="$PROJECT_DIR$/.idea/Goncalo_PSR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PSR_TP3_G6/.idea/PSR_TP3_G6.iml" filepath="$PROJECT_DIR$/../PSR_TP3_G6/.idea/PSR_TP3_G6.iml" />
       <module fileurl="file://$USER_HOME$/Trabalho2_G5_PSR/.idea/Trabalho2_G5_PSR.iml" filepath="$USER_HOME$/Trabalho2_G5_PSR/.idea/Trabalho2_G5_PSR.iml" />
     </modules>
   </component>
